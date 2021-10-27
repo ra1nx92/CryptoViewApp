@@ -3,21 +3,30 @@ package com.example.cryptoviewapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.cryptoviewapp.adapter.CoinInfoAdapter
+import com.example.cryptoviewapp.databinding.ActivityMainBinding
+import com.example.cryptoviewapp.pojo.CoinPriseInfo
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel:CoinViewModel
-
+    private val viewModel: CoinViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        viewModel = ViewModelProvider.AndroidViewModelFactory(application).create(CoinViewModel::class.java)
-//        viewModel.priceList.observe(this, Observer {
-//            Log.d("TEST_OF_LOAD", "success in activity:  $it")
-//        })
-        viewModel.detalInfo("BTC").observe(this, Observer {
-            Log.d("TEST_OF_LOAD", "success in activity BTC:  $it")
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val adapter = CoinInfoAdapter(this)
+        adapter.onCoinClick = object : CoinInfoAdapter.onCoinClickListener {
+            override fun onCoinClisk(coinPriseInfo: CoinPriseInfo) {
+                Log.d("TEST_OF_LOAD", coinPriseInfo.fromsymbol)
+            }
+        }
+        binding.rvCoinPriseList.adapter = adapter
+
+        viewModel.priceList.observe(this, Observer {
+            adapter.coinInfoList = it
         })
     }
 }
