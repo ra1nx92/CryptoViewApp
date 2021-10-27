@@ -2,6 +2,8 @@ package com.example.cryptoviewapp.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.cryptoviewapp.api.ApiFact.BASE_IMAGE_URL
+import com.example.cryptoviewapp.utils.TimeUtils.convertTime
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 @Entity(tableName = "full_prise_list")
@@ -27,7 +29,7 @@ data class CoinPriseInfo(
     val price:Double? = null,
     @SerializedName("LASTUPDATE")
     @Expose
-    val lastupdate:Int? = null,
+    val lastupdate:Long? = null,
     @SerializedName("MEDIAN")
     @Expose
     val median:Int? = null,
@@ -148,4 +150,12 @@ data class CoinPriseInfo(
     @SerializedName("IMAGEURL")
     @Expose
     val imageurl: String? = null
-)
+){
+    fun getFormatedTime():String{
+       return convertTime(lastupdate)
+    }
+
+    fun getImageUrl(): String {
+        return BASE_IMAGE_URL + imageurl
+    }
+}
