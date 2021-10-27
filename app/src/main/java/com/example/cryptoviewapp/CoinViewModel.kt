@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriseInfoDao().getPriseList()
     init {
@@ -31,7 +31,7 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFact.apiService.getFullPriceList(fSyms = it) }
             .map { getPriseListFromRowData(it) }
-            .delaySubscription(5, TimeUnit.SECONDS)
+            .delaySubscription(1, TimeUnit.MINUTES)
             .repeat()
             .retry()
             .subscribeOn(Schedulers.io())
