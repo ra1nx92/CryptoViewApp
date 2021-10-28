@@ -31,8 +31,9 @@ class CoinInfoAdapter(private val context: Context) :
         with(holder) {
             val symblos = context.resources.getString(R.string.symb_temp)
             val lastUpd = context.resources.getString(R.string.last_upd)
+            val priseFormat = context.getString(R.string.price_format)
             binding.tvSymbols.text = String.format(symblos, coin.fromsymbol, coin.tosymbol)
-            binding.tvCoinPrise.text = coin.price.toString()
+            binding.tvCoinPrise.text = String.format(priseFormat, coin.price)
             binding.tvLastUpd.text = String.format(lastUpd, coin.getFormatedTime())
             Picasso
                 .get()

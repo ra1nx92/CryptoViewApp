@@ -28,9 +28,9 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun loadData() {
         val disposable = ApiFact.apiService.getTopCoinsInfo(limit = 20)
-            .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
+            .map { it -> it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFact.apiService.getFullPriceList(fSyms = it) }
-            .map { getPriseListFromRowData(it) }
+            .map { getPriseListFromRowData(it).sortedBy { it.price } }
             .delaySubscription(1, TimeUnit.MINUTES)
             .repeat()
             .retry()
