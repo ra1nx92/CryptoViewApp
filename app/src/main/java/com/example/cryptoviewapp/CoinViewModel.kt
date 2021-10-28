@@ -18,11 +18,12 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriseInfoDao().getPriseList()
+
     init {
         loadData()
     }
 
-    fun detalInfo(fSym:String):LiveData<CoinPriseInfo>{
+    fun detalInfo(fSym: String): LiveData<CoinPriseInfo> {
         return db.coinPriseInfoDao().getPriseInfoAboutCoin(fSym)
     }
 
@@ -30,7 +31,7 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
         val disposable = ApiFact.apiService.getTopCoinsInfo(limit = 20)
             .map { it -> it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFact.apiService.getFullPriceList(fSyms = it) }
-            .map { getPriseListFromRowData(it).sortedBy { it.price } }
+            .map { getPriseListFromRowData(it) }
             .delaySubscription(1, TimeUnit.MINUTES)
             .repeat()
             .retry()
