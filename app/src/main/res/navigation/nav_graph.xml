@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/coinInfoFragment"
         android:name="com.example.cryptoviewapp.fragments.CoinInfoFragment"
-        android:label="Курс обмена криптовалюты"
+        android:label="Crypto"
         tools:layout="@layout/coin_info_fragment" >
         <action
             android:id="@+id/action_coinInfoFragment_to_detalInfoCoinFragment"

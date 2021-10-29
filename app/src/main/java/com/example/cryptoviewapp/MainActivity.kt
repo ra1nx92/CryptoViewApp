@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController)
 
     }
-
+    //функция для кнопки "назад" вверху тулбара
     override fun onSupportNavigateUp(): Boolean {
       return if (navController.navigateUp()) {
             true
