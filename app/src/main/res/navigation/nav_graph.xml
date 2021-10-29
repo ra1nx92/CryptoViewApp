@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/coinInfoFragment">
+
+    <fragment
+        android:id="@+id/coinInfoFragment"
+        android:name="com.example.cryptoviewapp.fragments.CoinInfoFragment"
+        android:label="Курс обмена криптовалюты"
+        tools:layout="@layout/coin_info_fragment" >
+        <action
+            android:id="@+id/action_coinInfoFragment_to_detalInfoCoinFragment"
+            app:destination="@id/detalInfoCoinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalInfoCoinFragment"
+        android:name="com.example.cryptoviewapp.fragments.DetalInfoCoinFragment"
+        android:label="Детальная информация"
+        tools:layout="@layout/fragment_detal_info_coin" >
+        <action
+            android:id="@+id/action_detalInfoCoinFragment_to_coinInfoFragment"
+            app:destination="@id/coinInfoFragment" />
+    </fragment>
+</navigation>

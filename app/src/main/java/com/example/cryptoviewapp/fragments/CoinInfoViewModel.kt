@@ -1,9 +1,8 @@
-package com.example.cryptoviewapp
+package com.example.cryptoviewapp.fragments
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import com.example.cryptoviewapp.api.ApiFact
 import com.example.cryptoviewapp.database.AppDatabase
 import com.example.cryptoviewapp.pojo.CoinPriseInfo
@@ -13,17 +12,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
+class CoinInfoViewModel (application: Application): AndroidViewModel(application) {
+
     private val db = AppDatabase.getInstance(application)
     private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriseInfoDao().getPriseList()
     init {
         loadData()
-    }
-
-    fun detalInfo(fSym:String):LiveData<CoinPriseInfo>{
-        return db.coinPriseInfoDao().getPriseInfoAboutCoin(fSym)
     }
 
     private fun loadData() {
@@ -66,4 +62,5 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
         super.onCleared()
         compositeDisposable.dispose()
     }
+
 }

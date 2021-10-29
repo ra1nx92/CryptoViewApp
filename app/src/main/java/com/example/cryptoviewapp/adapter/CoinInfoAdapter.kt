@@ -1,16 +1,16 @@
 package com.example.cryptoviewapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.ItemCoinInfoBinding
+import com.example.cryptoviewapp.fragments.CoinInfoFragment
 import com.example.cryptoviewapp.pojo.CoinPriseInfo
 import com.squareup.picasso.Picasso
 
-class CoinInfoAdapter(private val context: Context) :
+class CoinInfoAdapter(private val context: CoinInfoFragment) :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
     var onCoinClick: onCoinClickListener? = null
     var coinInfoList: List<CoinPriseInfo> = arrayListOf()
