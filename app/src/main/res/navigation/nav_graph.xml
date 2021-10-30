@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/coinInfoFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/coinInfoFragment"
@@ -17,10 +17,22 @@
     <fragment
         android:id="@+id/detalInfoCoinFragment"
         android:name="com.example.cryptoviewapp.fragments.DetalInfoCoinFragment"
-        android:label="Детальная информация"
+        android:label="Detailed Information"
         tools:layout="@layout/fragment_detal_info_coin" >
         <action
             android:id="@+id/action_detalInfoCoinFragment_to_coinInfoFragment"
+            app:destination="@id/coinInfoFragment" />
+        <argument
+            android:name="coinPriseInfo"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.cryptoviewapp.fragments.SplashScreenFragment"
+        android:label="             Crypto Сurrency View App"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_coinInfoFragment"
             app:destination="@id/coinInfoFragment" />
     </fragment>
 </navigation>

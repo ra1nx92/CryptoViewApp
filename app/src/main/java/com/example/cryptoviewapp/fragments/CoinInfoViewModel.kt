@@ -3,6 +3,7 @@ package com.example.cryptoviewapp.fragments
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.example.cryptoviewapp.api.ApiFact
 import com.example.cryptoviewapp.database.AppDatabase
 import com.example.cryptoviewapp.pojo.CoinPriseInfo
@@ -18,15 +19,20 @@ class CoinInfoViewModel (application: Application): AndroidViewModel(application
     private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriseInfoDao().getPriseList()
+
     init {
         loadData()
+    }
+
+    fun detalInfo(fSym: String): LiveData<CoinPriseInfo> {
+        return db.coinPriseInfoDao().getPriseInfoAboutCoin(fSym)
     }
 
     private fun loadData() {
         val disposable = ApiFact.apiService.getTopCoinsInfo(limit = 20)
             .map { it -> it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFact.apiService.getFullPriceList(fSyms = it) }
-            .map { getPriseListFromRowData(it).sortedBy { it.price } }
+            .map { getPriseListFromRowData(it) }
             .delaySubscription(1, TimeUnit.MINUTES)
             .repeat()
             .retry()
