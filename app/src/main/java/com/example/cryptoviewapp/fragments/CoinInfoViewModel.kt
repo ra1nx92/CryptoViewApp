@@ -1,4 +1,4 @@
-package com.example.cryptoviewapp
+package com.example.cryptoviewapp.fragments
 
 import android.app.Application
 import android.util.Log
@@ -13,7 +13,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
+class CoinInfoViewModel (application: Application): AndroidViewModel(application) {
+
     private val db = AppDatabase.getInstance(application)
     private val compositeDisposable = CompositeDisposable()
 
@@ -67,4 +68,5 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
         super.onCleared()
         compositeDisposable.dispose()
     }
+
 }

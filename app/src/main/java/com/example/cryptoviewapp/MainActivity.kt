@@ -13,7 +13,6 @@ import com.example.cryptoviewapp.pojo.CoinPriseInfo
 class MainActivity : AppCompatActivity() {
     private val viewModel: CoinViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
