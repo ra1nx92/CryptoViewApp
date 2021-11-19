@@ -19,7 +19,7 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
             notifyDataSetChanged()
         }
 
-    //создание элемента, прикрипление макета
+    //создание элемента списка, прикрипление макета
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_coin_info, parent, false)
