@@ -1,9 +1,9 @@
-package com.example.cryptoviewapp.pojo
+package com.example.cryptoviewapp.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
-data class CoinInfo(
+//обькт с информацией о валюте
+data class CoinNameDto(
     @SerializedName("Name")
     @Expose
     val name: String? = null
