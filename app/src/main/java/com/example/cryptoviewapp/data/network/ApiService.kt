@@ -11,20 +11,20 @@ import retrofit2.http.Query
 interface ApiService {
     //получаем список самых популярных криптовалют
     @GET("top/totalvolfull")
-    fun getTopCoinsInfo(
+    suspend fun getTopCoinsInfo(
         //получаем необходимые параметры
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String = CURRENCY
-    ): Single<CoinsNameListDto>
+    ):CoinsNameListDto
 //загружаем полную информацию
     @GET("pricemultifull")
-    fun getFullPriceList(
+    suspend fun getFullPriceList(
     //получаем параметры
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY
-    ): Single<CoinInfoJsonContainerDto>
+    ):CoinInfoJsonContainerDto
 
     companion object {
         //параметры для связи с сервером

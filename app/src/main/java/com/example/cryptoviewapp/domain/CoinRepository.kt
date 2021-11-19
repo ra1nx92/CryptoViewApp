@@ -6,5 +6,6 @@ import androidx.lifecycle.LiveData
 //Use case зависят от интерфейса репозитория, а не от конкретной реализации
 interface CoinRepository {
     fun getCoinInfoList(): LiveData<List<CoinInfo>>
-    fun getCoinInfo(fromSymbol:String):LiveData<List<CoinInfo>>
+    fun getCoinInfo(fromSymbol:String):LiveData<CoinInfo>
+    suspend fun loadData()
 }
