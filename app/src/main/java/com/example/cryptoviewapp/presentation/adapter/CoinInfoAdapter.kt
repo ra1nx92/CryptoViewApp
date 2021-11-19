@@ -1,4 +1,4 @@
-package com.example.cryptoviewapp.adapter
+package com.example.cryptoviewapp.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.ItemCoinInfoBinding
-import com.example.cryptoviewapp.fragments.CoinInfoFragment
-import com.example.cryptoviewapp.pojo.CoinPriseInfo
+import com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment
+import com.example.cryptoviewapp.data.network.model.CoinInfoDto
 import com.squareup.picasso.Picasso
 //адаптер, необходим для заполнения данными списка RV
 class CoinInfoAdapter(private val context: CoinInfoFragment) :
     RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
     var onCoinClick: onCoinClickListener? = null
-    var coinInfoList: List<CoinPriseInfo> = arrayListOf()
+    var coinInfoList: List<CoinInfoDto> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -57,6 +57,6 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
     }
     //интерфейс для функции клика по элементу списка
     interface onCoinClickListener {
-        fun onCoinClisk(coinPriseInfo: CoinPriseInfo)
+        fun onCoinClisk(coinPriseInfo: CoinInfoDto)
     }
 }

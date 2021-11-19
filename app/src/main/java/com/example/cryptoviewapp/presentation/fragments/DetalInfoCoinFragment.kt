@@ -1,7 +1,6 @@
-package com.example.cryptoviewapp.fragments
+package com.example.cryptoviewapp.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -9,11 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.FragmentDetalInfoCoinBinding
+import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
 import com.squareup.picasso.Picasso
 
 
 class DetalInfoCoinFragment : Fragment(R.layout.fragment_detal_info_coin) {
-    private val viewModel:CoinInfoViewModel by viewModels()
+    private val viewModel: CoinInfoViewModel by viewModels()
     private lateinit var binding: FragmentDetalInfoCoinBinding
     private val args:DetalInfoCoinFragmentArgs by navArgs() //для приема данных из первого фрагмента
 

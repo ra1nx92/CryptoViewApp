@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkula"
-    tools:context=".fragments.DetalInfoCoinFragment">
+    tools:context=".presentation.fragments.DetalInfoCoinFragment">
 
     <ImageView
         android:id="@+id/ivLogoCoin"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/coinInfoFragment"
-        android:name="com.example.cryptoviewapp.fragments.CoinInfoFragment"
+        android:name="com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment"
         android:label="Crypto"
         tools:layout="@layout/coin_info_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalInfoCoinFragment"
-        android:name="com.example.cryptoviewapp.fragments.DetalInfoCoinFragment"
+        android:name="com.example.cryptoviewapp.presentation.fragments.DetalInfoCoinFragment"
         android:label="Detailed Information"
         tools:layout="@layout/fragment_detal_info_coin" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.cryptoviewapp.fragments.SplashScreenFragment"
+        android:name="com.example.cryptoviewapp.presentation.fragments.SplashScreenFragment"
         android:label="             Crypto Сurrency View App"
         tools:layout="@layout/fragment_splash_screen" >
         <action

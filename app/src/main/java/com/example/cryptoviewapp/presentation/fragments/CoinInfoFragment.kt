@@ -1,4 +1,4 @@
-package com.example.cryptoviewapp.fragments
+package com.example.cryptoviewapp.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,10 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cryptoviewapp.R
-import com.example.cryptoviewapp.adapter.CoinInfoAdapter
+import com.example.cryptoviewapp.presentation.adapter.CoinInfoAdapter
 import com.example.cryptoviewapp.databinding.CoinInfoFragmentBinding
-import com.example.cryptoviewapp.pojo.CoinPriseInfo
+import com.example.cryptoviewapp.data.network.model.CoinInfoDto
+import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
 
 class CoinInfoFragment : Fragment(R.layout.coin_info_fragment) {
     private val viewModel: CoinInfoViewModel by viewModels()
@@ -20,7 +21,7 @@ class CoinInfoFragment : Fragment(R.layout.coin_info_fragment) {
 
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClick = object : CoinInfoAdapter.onCoinClickListener {
-            override fun onCoinClisk(coinPriseInfo: CoinPriseInfo) {
+            override fun onCoinClisk(coinPriseInfo: CoinInfoDto) {
 //в графе навигации устанавливаем аргумент coinPriseInfo типа string, в фрагменте который будет принимать данные
                 findNavController().navigate(CoinInfoFragmentDirections
                     .actionCoinInfoFragmentToDetalInfoCoinFragment(coinPriseInfo.fromsymbol))
