@@ -12,18 +12,16 @@ import com.google.gson.Gson
 //data слой зависит от domain
 class CoinMapper {
     //метод преобразует сущность domain слоя в data слой
-    fun mapDtoToDbModel(coinInfoDto: CoinInfoDto): CoinInfoDbModel {
-        return CoinInfoDbModel(
-            fromsymbol = coinInfoDto.fromsymbol,
-            tosymbol = coinInfoDto.tosymbol,
-            price = coinInfoDto.price,
-            lastupdate = coinInfoDto.lastupdate,
-            highday = coinInfoDto.highday,
-            lowday = coinInfoDto.lowday,
-            lastmarket = coinInfoDto.lastmarket,
-            imageurl = coinInfoDto.imageurl
-        )
-    }
+    fun mapDtoToDbModel(dto: CoinInfoDto): CoinInfoDbModel = CoinInfoDbModel(
+        fromsymbol = dto.fromsymbol,
+        tosymbol = dto.tosymbol,
+        price = dto.price,
+        lastupdate = dto.lastupdate,
+        highday = dto.highday,
+        lowday = dto.lowday,
+        lastmarket = dto.lastmarket,
+        imageurl = dto.imageurl ?: ""
+    )
 
     //преобразование json обьекта в коллекцию обьектов CoinInfoDto
     fun mapJsonContainerToListCoinInfo(jsonContainer: CoinInfoJsonContainerDto): List<CoinInfoDto> {
