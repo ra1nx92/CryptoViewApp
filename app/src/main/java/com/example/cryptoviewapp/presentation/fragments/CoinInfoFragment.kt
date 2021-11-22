@@ -20,17 +20,22 @@ class CoinInfoFragment : Fragment(R.layout.coin_info_fragment) {
         binding = CoinInfoFragmentBinding.bind(view)
 
         val adapter = CoinInfoAdapter(this)
+        //анонимная функция обработки клика по элементу списка
         adapter.onCoinClick = object : CoinInfoAdapter.onCoinClickListener {
             override fun onCoinClisk(coinPriseInfo: CoinInfo) {
 //в графе навигации устанавливаем аргумент coinPriseInfo типа string, в фрагменте который будет принимать данные
-                findNavController().navigate(CoinInfoFragmentDirections
-                    .actionCoinInfoFragmentToDetalInfoCoinFragment(coinPriseInfo.fromsymbol))
+                    findNavController().navigate(
+                        CoinInfoFragmentDirections
+                            .actionCoinInfoFragmentToDetalInfoCoinFragment(coinPriseInfo.fromsymbol)
+                    )
             }
         }
         binding.rvCoinInfoList.adapter = adapter
 
         viewModel.coinInfoList.observe(viewLifecycleOwner, {
-            adapter.coinInfoList = it
+            adapter.submitList(it) //реализация с ListAdapter
+            //при вызове метода submitList запускается новый поток
+            // в котором проходят все вычисления, после которых список RV обновляется
         })
     }
 }

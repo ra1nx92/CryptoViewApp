@@ -23,11 +23,7 @@ class CoinInfoViewModel (application: Application): AndroidViewModel(application
         viewModelScope.launch{
             loadDataUseCase()
         }
-
     }
 
-
     fun detailInfo(fSym: String) = getCoinInfoUseCase(fSym)
-
-
 }
