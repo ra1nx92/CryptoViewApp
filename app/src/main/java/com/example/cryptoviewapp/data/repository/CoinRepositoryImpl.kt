@@ -8,6 +8,7 @@ import com.example.cryptoviewapp.data.mapper.CoinMapper
 import com.example.cryptoviewapp.data.network.ApiFact
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.example.cryptoviewapp.domain.CoinRepository
+import kotlinx.coroutines.delay
 
 class CoinRepositoryImpl(private val application: Application):CoinRepository {
 
@@ -35,10 +36,23 @@ class CoinRepositoryImpl(private val application: Application):CoinRepository {
     }
 
     override suspend fun loadData() {
-        val topCoins = ApiFact.apiService.getTopCoinsInfo(limit = 20)
-        val fSyms = mapper.mapNamesListToString(topCoins)
-        val jsonContainer = ApiFact.apiService.getFullPriceList(fSyms = fSyms)
-        val coinInfoDto = mapper.mapJsonContainerToListCoinInfo(jsonContainer)
-        val dbModelList = coinInfoDto.map { mapper.mapDtoToDbModel(it) }
+        while (true) {
+            //на случай если пропадет связь с интернетом, т.к если не обработать исключение, будет краш
+    //это самая простая обработка исключений при работе с корутинами, просто обернуть в try\catch
+            try {
+                val topCoins =
+                    ApiFact.apiService.getTopCoinsInfo(limit = 20) //получаем топ самых популярных валют
+                val fSyms = mapper.mapNamesListToString(topCoins) //преобразуем валюты в 1 строку
+                val jsonContainer =
+                    ApiFact.apiService.getFullPriceList(fSyms = fSyms)//получаем полный прайс лист
+                val coinInfoDto =
+                    mapper.mapJsonContainerToListCoinInfo(jsonContainer)//преобразуем json контейнер в колекцию обьектов Dto
+                val dbModelList =
+                    coinInfoDto.map { mapper.mapDtoToDbModel(it) }//преобразуем Dto в обьекты для базы данных
+                coinInfoDao.insertPriseList(dbModelList)//кладем в базу
+            } catch (e: Exception) {
+            }
+            delay(30000)// цикл будет обновлять данные каждых 30 секунд
+        }
     }
 }

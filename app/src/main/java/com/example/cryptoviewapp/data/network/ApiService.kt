@@ -2,7 +2,6 @@ package com.example.cryptoviewapp.data.network
 
 import com.example.cryptoviewapp.data.network.model.CoinsNameListDto
 import com.example.cryptoviewapp.data.network.model.CoinInfoJsonContainerDto
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 //Аннотация GET означает, что HTTP-запрос для top/totalvolfull должен быть типа GET. А в качестве
