@@ -1,15 +1,14 @@
 package com.example.cryptoviewapp.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoviewapp.R
-import com.example.cryptoviewapp.data.network.ApiFact.BASE_IMAGE_URL
 import com.example.cryptoviewapp.databinding.FragmentDetalInfoCoinBinding
 import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
-import com.example.cryptoviewapp.utils.TimeUtils
 import com.squareup.picasso.Picasso
 
 
@@ -29,12 +28,11 @@ class DetalInfoCoinFragment : Fragment(R.layout.fragment_detal_info_coin) {
                 tvMinPrice.text = it.lowday.toString()
                 tvMaxPrice.text = it.highday.toString()
                 tvLastMarket.text = it.lastmarket.toString()
-                tvLastUpdate.text = TimeUtils.convertTime(it.lastupdate)
+                tvLastUpdate.text = it.lastupdate
                 tvFromSymbol.text = it.fromsymbol
                 tvToSymbol.text = it.tosymbol
                 //загрузка изображения
-                Picasso.get().load(BASE_IMAGE_URL + it.imageurl).into(ivLogoCoin)
-
+                Picasso.get().load(it.imageurl).into(ivLogoCoin)
             }
         })
     }

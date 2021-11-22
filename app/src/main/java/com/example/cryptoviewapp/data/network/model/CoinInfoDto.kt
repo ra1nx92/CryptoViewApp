@@ -2,10 +2,9 @@ package com.example.cryptoviewapp.data.network.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.cryptoviewapp.data.network.ApiFact.BASE_IMAGE_URL
-import com.example.cryptoviewapp.utils.TimeUtils.convertTime
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+
 @Entity(tableName = "full_prise_list")
 //вся информация о валюте
 data class CoinInfoDto(
@@ -152,11 +151,4 @@ data class CoinInfoDto(
     @Expose
     val imageurl: String? = null
 ){
-    fun getFormatedTime():String{
-       return convertTime(lastupdate)
-    }
-
-    fun getImageUrl(): String {
-        return BASE_IMAGE_URL + imageurl
-    }
 }

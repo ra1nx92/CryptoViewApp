@@ -19,15 +19,8 @@ class CoinInfoViewModel (application: Application): AndroidViewModel(application
 
     val coinInfoList = getCoinInfoListUseCase()
     init {
-//корутины можно использовать только из другой suspend функции, или из скоупа. Т.к это VM, используем viewModelScope
-        viewModelScope.launch{
             loadDataUseCase()
-        }
-
     }
 
-
     fun detailInfo(fSym: String) = getCoinInfoUseCase(fSym)
-
-
 }

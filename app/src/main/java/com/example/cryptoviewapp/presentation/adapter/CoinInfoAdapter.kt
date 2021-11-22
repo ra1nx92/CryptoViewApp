@@ -1,26 +1,19 @@
 package com.example.cryptoviewapp.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoviewapp.R
-import com.example.cryptoviewapp.data.network.ApiFact.BASE_IMAGE_URL
-import com.example.cryptoviewapp.databinding.ItemCoinInfoBinding
-import com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment
 import com.example.cryptoviewapp.domain.CoinInfo
-import com.example.cryptoviewapp.utils.TimeUtils
+import com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment
 import com.squareup.picasso.Picasso
 
 //адаптер, необходим для заполнения данными списка RV
+//обновление списка реализуется через ListAdapter, с ним проще работать чем в DiffUtils, и он работает в отдельном потоке
 class CoinInfoAdapter(private val context: CoinInfoFragment) :
-    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+    ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCallback()) {
     var onCoinClick: onCoinClickListener? = null
-    var coinInfoList: List<CoinInfo> = arrayListOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     //создание элемента списка, прикрипление макета
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
@@ -31,7 +24,7 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
 
     //запонение элемента макета данными
     override fun onBindViewHolder(holder: CoinInfoViewHolder, position: Int) {
-        val coin = coinInfoList[position]
+        val coin = getItem(position)
         with(holder) {
             val symblos =
                 context.resources.getString(R.string.symb_temp) //текстовые ресурсы для формата вывода данных в списке
@@ -42,12 +35,13 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
             binding.tvCoinPrise.text = String.format(priseFormat, coin.price) //цена по курсу обмена
             binding.tvLastUpd.text = String.format(
                 lastUpd,
-                TimeUtils.convertTime(coin.lastupdate)
+                coin.lastupdate
             ) // время последнего обновления списка
+
             //библиотека для загрузки изображений из интернета
             Picasso
                 .get()
-                .load(BASE_IMAGE_URL + coin.imageurl)
+                .load(coin.imageurl)
                 .into(binding.ivCoinLogotype)
 
             //метод клика по элементу списка
@@ -56,15 +50,9 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
             }
         }
     }
-
-    //тут количество элементов в списке, указывается сам список и его метод size
-    override fun getItemCount(): Int {
-        return coinInfoList.size
-    }
-
-    class CoinInfoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = ItemCoinInfoBinding.bind(itemView)
-    }
+    //----------------------------------------------------------------------
+    //реализация ListAdapter позволяет не переопределять метод getItemCount
+    //----------------------------------------------------------------------
 
     //интерфейс для функции клика по элементу списка
     interface onCoinClickListener {

@@ -6,6 +6,10 @@ import com.example.cryptoviewapp.data.network.model.CoinInfoJsonContainerDto
 import com.example.cryptoviewapp.data.network.model.CoinsNameListDto
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.google.gson.Gson
+import java.sql.Date
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 //класс содержит методы для преобразования обьектов domain слоя в модель БД, это необходимо для
 //сохранения принципа чистой архитектуры, domain слой ничего не должен знать о data слое,
@@ -20,7 +24,7 @@ class CoinMapper {
         highday = dto.highday,
         lowday = dto.lowday,
         lastmarket = dto.lastmarket,
-        imageurl = dto.imageurl ?: ""
+        imageurl = BASE_IMAGE_URL + dto.imageurl
     )
 
     //преобразование json обьекта в коллекцию обьектов CoinInfoDto
@@ -58,11 +62,25 @@ class CoinMapper {
             fromsymbol = dbModel.fromsymbol,
             tosymbol = dbModel.tosymbol,
             price = dbModel.price,
-            lastupdate = dbModel.lastupdate,
+            lastupdate = convertTime( dbModel.lastupdate),
             highday = dbModel.highday,
             lowday = dbModel.lowday,
             lastmarket = dbModel.lastmarket,
             imageurl = dbModel.imageurl
         )
+    }
+    //конвертация в нормальное время
+    private fun convertTime(time:Long?):String{
+        if(time == null) return ""
+        val stamp = Timestamp(time * 1000)
+        val date = Date(stamp.time)
+        val pattern = "HH:mm:ss"
+        val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+        simpleDateFormat.timeZone = TimeZone.getDefault()
+        return simpleDateFormat.format(date)
+    }
+
+    companion object{
+        const val BASE_IMAGE_URL: String = "https://cryptocompare.com"
     }
 }
