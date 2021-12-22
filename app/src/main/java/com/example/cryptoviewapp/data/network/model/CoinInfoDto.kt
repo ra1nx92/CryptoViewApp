@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 //вся информация о валюте
 data class CoinInfoDto(
     @SerializedName("TYPE")
-    @Expose
+    @Expose()
     val type: String? = null,
     @SerializedName("MARKET")
     @Expose

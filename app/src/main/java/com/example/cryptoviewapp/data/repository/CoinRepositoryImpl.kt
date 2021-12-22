@@ -7,11 +7,9 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import com.example.cryptoviewapp.data.database.AppDatabase
 import com.example.cryptoviewapp.data.mapper.CoinMapper
-import com.example.cryptoviewapp.data.network.ApiFact
 import com.example.cryptoviewapp.data.workers.RefreshDataWorker
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.example.cryptoviewapp.domain.CoinRepository
-import kotlinx.coroutines.delay
 
 class CoinRepositoryImpl(private val application: Application):CoinRepository {
 
@@ -21,7 +19,7 @@ class CoinRepositoryImpl(private val application: Application):CoinRepository {
     private val mapper = CoinMapper()
 
         //метод будет возвращать сразу обьект LD содержащий коллекцию обьектов из Domain слоя
-    override fun getCoinInfoList(): LiveData<List<CoinInfo>> {
+    override fun getCoinInfoList(): LiveData<List<CoinInfo  >> {
         //для того чтобы мапить обьекты LD, необходимо использовать Transformations.map
         return Transformations.map( coinInfoDao.getPriseList()){ it ->
             it.map {
