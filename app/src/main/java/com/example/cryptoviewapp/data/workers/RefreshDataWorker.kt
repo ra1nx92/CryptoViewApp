@@ -24,10 +24,10 @@ class RefreshDataWorker(context: Context,workerParameters: WorkerParameters)
             //это самая простая обработка исключений при работе с корутинами, просто обернуть в try\catch
             try {
                 val topCoins =
-                    ApiFact.apiService.getTopCoinsInfo(limit = 20) //получаем топ самых популярных валют
+                    apiService.getTopCoinsInfo(limit = 20) //получаем топ самых популярных валют
                 val fSyms = mapper.mapNamesListToString(topCoins) //преобразуем валюты в 1 строку
                 val jsonContainer =
-                    ApiFact.apiService.getFullPriceList(fSyms = fSyms)//получаем полный прайс лист
+                    apiService.getFullPriceList(fSyms = fSyms)//получаем полный прайс лист
                 val coinInfoDto =
                     mapper.mapJsonContainerToListCoinInfo(jsonContainer)//преобразуем json контейнер в колекцию обьектов Dto
                 val dbModelList =
