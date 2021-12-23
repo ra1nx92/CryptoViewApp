@@ -19,9 +19,6 @@
         android:name="com.example.cryptoviewapp.presentation.fragments.DetalInfoCoinFragment"
         android:label="Detailed Information"
         tools:layout="@layout/fragment_detal_info_coin" >
-        <action
-            android:id="@+id/action_detalInfoCoinFragment_to_coinInfoFragment"
-            app:destination="@id/coinInfoFragment" />
         <argument
             android:name="coinPriseInfo"
             app:argType="string" />
