@@ -1,22 +1,25 @@
 package com.example.cryptoviewapp.data.workers
 
 import android.content.Context
-import androidx.work.*
-import com.example.cryptoviewapp.data.database.AppDatabase
-import com.example.cryptoviewapp.data.mapper.CoinMapper
-import com.example.cryptoviewapp.data.network.ApiFact
+import androidx.work.CoroutineWorker
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkerParameters
+import com.example.cryptoviewapp.data.database.CoinInfoDao
+import com.example.cryptoviewapp.data.mapper.CoinMappers
+import com.example.cryptoviewapp.data.network.ApiService
 import kotlinx.coroutines.delay
+import org.koin.core.component.KoinComponent
 
-class RefreshDataWorker(context: Context,workerParameters: WorkerParameters)
-    //чтобы работать с корутинами, наследуемся от CoroutineWorker вместо обычного Worker
-    :CoroutineWorker(context,workerParameters) {
-
-    //создаем ссылку на интерфейс Dao
-    private val coinInfoDao = AppDatabase.getInstance(context).coinPriseInfoDao()
-    //мапер для преобразования обьектов в необходимые типы
-    private val mapper = CoinMapper()
-    //для загрузки данных
-    private val apiService = ApiFact.apiService
+class RefreshDataWorker(
+    private val apiService:ApiService,
+    private val coinInfoDao:CoinInfoDao,
+    private val mapper:CoinMappers,
+    val context: Context,
+    workerParameters: WorkerParameters,
+    )
+//чтобы работать с корутинами, наследуемся от CoroutineWorker вместо обычного Worker
+    : CoroutineWorker(context, workerParameters),KoinComponent {
 
     override suspend fun doWork(): Result {
         while (true) {
@@ -35,14 +38,14 @@ class RefreshDataWorker(context: Context,workerParameters: WorkerParameters)
                 coinInfoDao.insertPriseList(dbModelList)//кладем в базу
             } catch (e: Exception) {
             }
-            delay(30000)// цикл будет обновлять данные каждых 30 секунд
+            delay(15000)// цикл будет обновлять данные каждых 15 секунд
         }
     }
 
-    companion object{
+    companion object {
         const val WORK_NAME = "load_data"
 
-        fun makeRequest():OneTimeWorkRequest{
+        fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
         }
     }

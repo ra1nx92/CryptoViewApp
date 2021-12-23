@@ -3,16 +3,17 @@ package com.example.cryptoviewapp.presentation.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.presentation.adapter.CoinInfoAdapter
 import com.example.cryptoviewapp.databinding.CoinInfoFragmentBinding
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class CoinInfoFragment : Fragment(R.layout.coin_info_fragment) {
-    private val viewModel: CoinInfoViewModel by viewModels()
+    private val viewModel: CoinInfoViewModel by viewModel()
     private lateinit var binding: CoinInfoFragmentBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -21,8 +22,8 @@ class CoinInfoFragment : Fragment(R.layout.coin_info_fragment) {
 
         val adapter = CoinInfoAdapter(this)
         //анонимная функция обработки клика по элементу списка
-        adapter.onCoinClick = object : CoinInfoAdapter.onCoinClickListener {
-            override fun onCoinClisk(coinPriseInfo: CoinInfo) {
+        adapter.onCoinClick = object : CoinInfoAdapter.OnCoinClickListener {
+            override fun onCoinClick(coinPriseInfo: CoinInfo) {
 //в графе навигации устанавливаем аргумент coinPriseInfo типа string, в фрагменте который будет принимать данные
                     findNavController().navigate(
                         CoinInfoFragmentDirections

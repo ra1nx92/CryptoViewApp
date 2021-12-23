@@ -1,24 +1,20 @@
 package com.example.cryptoviewapp.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import com.example.cryptoviewapp.data.repository.CoinRepositoryImpl
+import androidx.lifecycle.ViewModel
 import com.example.cryptoviewapp.domain.GetCoinInfoListUseCase
 import com.example.cryptoviewapp.domain.GetCoinInfoUseCase
-import com.example.cryptoviewapp.domain.LoadDataUseCase
+import com.example.cryptoviewapp.domain.GetLoadDataUseCase
 
-class CoinInfoViewModel (application: Application): AndroidViewModel(application) {
-    //так делать нельзя, необходимо использовать DI
-    private val repository = CoinRepositoryImpl(application)
-    //добавляем юзкейсы
-    private val getCoinInfoListUseCase = GetCoinInfoListUseCase(repository)
-    private val getCoinInfoUseCase = GetCoinInfoUseCase(repository)
-    private val loadDataUseCase = LoadDataUseCase(repository)
+class CoinInfoViewModel (
+    getCoinInfoListUseCase:GetCoinInfoListUseCase,
+    private val getCoinInfoUseCase:GetCoinInfoUseCase,
+    getLoadDataUseCase:GetLoadDataUseCase
+        ): ViewModel() {
 
     val coinInfoList = getCoinInfoListUseCase()
     init {
-            loadDataUseCase()
+            getLoadDataUseCase()
     }
 
-    fun detailInfo(fSym: String) = getCoinInfoUseCase(fSym)
+    fun detailInfo(fSym: String) = getCoinInfoUseCase.invoke(fSym)
 }

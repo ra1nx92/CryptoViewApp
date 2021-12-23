@@ -1,11 +1,8 @@
 package com.example.cryptoviewapp.presentation.fragments
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.FragmentDetalInfoCoinBinding
@@ -17,11 +14,11 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.squareup.picasso.Picasso
-import org.koin.android.ext.android.bind
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetalInfoCoinFragment : Fragment(R.layout.fragment_detal_info_coin) {
-    private val viewModel: CoinInfoViewModel by viewModels()
+    private val viewModel: CoinInfoViewModel by viewModel()
     private lateinit var binding: FragmentDetalInfoCoinBinding
     private val args:DetalInfoCoinFragmentArgs by navArgs() //для приема данных из первого фрагмента
 
