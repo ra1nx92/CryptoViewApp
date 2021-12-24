@@ -1,17 +1,20 @@
 package com.example.cryptoviewapp.di
 
 import android.content.Context
+import androidx.work.WorkerParameters
 import com.example.cryptoviewapp.data.database.AppDatabase
 import com.example.cryptoviewapp.data.database.CoinInfoDao
 import com.example.cryptoviewapp.data.mapper.CoinMappers
 import com.example.cryptoviewapp.data.network.ApiFact
 import com.example.cryptoviewapp.data.network.ApiService
 import com.example.cryptoviewapp.data.repository.CoinRepositoryImpl
+import com.example.cryptoviewapp.data.workers.RefreshDataWorker
 import com.example.cryptoviewapp.domain.CoinRepository
 import com.example.cryptoviewapp.domain.GetCoinInfoListUseCase
 import com.example.cryptoviewapp.domain.GetCoinInfoUseCase
 import com.example.cryptoviewapp.domain.GetLoadDataUseCase
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
 val applicationModule = module {
