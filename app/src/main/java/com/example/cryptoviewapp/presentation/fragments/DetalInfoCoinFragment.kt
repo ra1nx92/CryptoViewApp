@@ -1,19 +1,18 @@
 package com.example.cryptoviewapp.presentation.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.FragmentDetalInfoCoinBinding
 import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
 import com.squareup.picasso.Picasso
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetalInfoCoinFragment : Fragment(R.layout.fragment_detal_info_coin) {
-    private val viewModel: CoinInfoViewModel by viewModels()
+    private val viewModel: CoinInfoViewModel by viewModel()
     private lateinit var binding: FragmentDetalInfoCoinBinding
     private val args:DetalInfoCoinFragmentArgs by navArgs() //для приема данных из первого фрагмента
 
@@ -23,7 +22,7 @@ class DetalInfoCoinFragment : Fragment(R.layout.fragment_detal_info_coin) {
         //принимаем данные args.coinPriseInfo
         viewModel.detailInfo(args.coinPriseInfo).observe(viewLifecycleOwner, {
             //устанавливаем данные
-            with(binding){
+            with(binding) {
                 tvPrice.text = it.price.toString()
                 tvMinPrice.text = it.lowday.toString()
                 tvMaxPrice.text = it.highday.toString()

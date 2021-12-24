@@ -3,7 +3,6 @@ package com.example.cryptoviewapp.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment
@@ -13,7 +12,7 @@ import com.squareup.picasso.Picasso
 //обновление списка реализуется через ListAdapter, с ним проще работать чем в DiffUtils, и он работает в отдельном потоке
 class CoinInfoAdapter(private val context: CoinInfoFragment) :
     ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCallback()) {
-    var onCoinClick: onCoinClickListener? = null
+    var onCoinClick: OnCoinClickListener? = null
 
     //создание элемента списка, прикрипление макета
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinInfoViewHolder {
@@ -46,7 +45,7 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
 
             //метод клика по элементу списка
             itemView.setOnClickListener {
-                onCoinClick?.onCoinClisk(coin)
+                onCoinClick?.onCoinClick(coin)
             }
         }
     }
@@ -55,7 +54,7 @@ class CoinInfoAdapter(private val context: CoinInfoFragment) :
     //----------------------------------------------------------------------
 
     //интерфейс для функции клика по элементу списка
-    interface onCoinClickListener {
-        fun onCoinClisk(coinPriseInfo: CoinInfo)
+    interface OnCoinClickListener {
+        fun onCoinClick(coinPriseInfo: CoinInfo)
     }
 }
