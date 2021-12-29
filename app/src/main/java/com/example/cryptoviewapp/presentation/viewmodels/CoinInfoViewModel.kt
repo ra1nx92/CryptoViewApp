@@ -5,15 +5,15 @@ import com.example.cryptoviewapp.domain.GetCoinInfoListUseCase
 import com.example.cryptoviewapp.domain.GetCoinInfoUseCase
 import com.example.cryptoviewapp.domain.GetLoadDataUseCase
 
-class CoinInfoViewModel (
-    getCoinInfoListUseCase:GetCoinInfoListUseCase,
-    private val getCoinInfoUseCase:GetCoinInfoUseCase,
-    getLoadDataUseCase:GetLoadDataUseCase
-        ): ViewModel() {
+class CoinInfoViewModel(
+    getCoinInfoListUseCase: GetCoinInfoListUseCase,
+    private val getCoinInfoUseCase: GetCoinInfoUseCase,
+    getLoadDataUseCase: GetLoadDataUseCase
+) : ViewModel() {
 
     val coinInfoList = getCoinInfoListUseCase()
     init {
-            getLoadDataUseCase()
+        getLoadDataUseCase()
     }
 
     fun detailInfo(fSym: String) = getCoinInfoUseCase.invoke(fSym)

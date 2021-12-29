@@ -18,37 +18,27 @@ import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
 val applicationModule = module {
-    fun provideApi(): ApiService {
-        return ApiFact.apiService
-    }
+    fun provideApi(): ApiService = ApiFact.apiService
 
-    fun provideDataBase(context: Context): CoinInfoDao {
-        return AppDatabase.getInstance(context).coinPriseInfoDao()
-    }
+    fun provideDataBase(context: Context): CoinInfoDao =
+        AppDatabase.getInstance(context).coinPriseInfoDao()
 
-    fun provideMapper(): CoinMappers {
-        return CoinMappers.Base()
-    }
+    fun provideMapper(): CoinMappers = CoinMappers.Base()
 
     fun provideRepository(
         context: Context,
         mappers: CoinMappers,
         coinInfoDao: CoinInfoDao
-    ): CoinRepository {
-        return CoinRepositoryImpl(context, mappers, coinInfoDao)
-    }
+    ): CoinRepository = CoinRepositoryImpl(context, mappers, coinInfoDao)
 
-    fun provideCoinInfoListUseCase(repository: CoinRepository): GetCoinInfoListUseCase {
-        return GetCoinInfoListUseCase(repository)
-    }
+    fun provideCoinInfoListUseCase(repository: CoinRepository): GetCoinInfoListUseCase =
+        GetCoinInfoListUseCase(repository)
 
-    fun provideCoinInfoUseCase(repository: CoinRepository): GetCoinInfoUseCase {
-        return GetCoinInfoUseCase(repository)
-    }
+    fun provideCoinInfoUseCase(repository: CoinRepository): GetCoinInfoUseCase =
+        GetCoinInfoUseCase(repository)
 
-    fun provideLoadDataUseCase(repository: CoinRepository): GetLoadDataUseCase {
-        return GetLoadDataUseCase(repository)
-    }
+    fun provideLoadDataUseCase(repository: CoinRepository): GetLoadDataUseCase =
+        GetLoadDataUseCase(repository)
 
     single<ApiService> { provideApi() }
     single<CoinInfoDao> { provideDataBase(androidContext()) }

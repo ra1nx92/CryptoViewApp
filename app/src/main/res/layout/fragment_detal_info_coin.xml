@@ -7,6 +7,35 @@
     android:background="@color/darkula"
     tools:context=".presentation.fragments.DetalInfoCoinFragment">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_information"
+                android:textColor="@color/white"
+                android:layout_margin="4dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <ImageView
         android:id="@+id/ivLogoCoin"
         android:layout_width="120dp"
@@ -14,7 +43,7 @@
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_info"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -79,7 +108,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/price_label"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -90,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvPriceLabel"
                 app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +141,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/min_price_label"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPriceLabel" />
@@ -124,7 +153,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvMinPriceLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvPriceLabel"
@@ -146,7 +175,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/max_price_label"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel" />
@@ -158,7 +187,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvMaxPriceLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel"
@@ -180,7 +209,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/last_market_label"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvMaxPriceLabel" />
@@ -192,7 +221,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvLastMarketLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvMaxPriceLabel"
@@ -214,7 +243,7 @@
                 android:paddingEnd="8dp"
                 android:text="@string/last_updated_label"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLastMarketLabel" />
@@ -226,7 +255,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvLastUpdateLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvLastMarket"
@@ -235,12 +264,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/bar_chart"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

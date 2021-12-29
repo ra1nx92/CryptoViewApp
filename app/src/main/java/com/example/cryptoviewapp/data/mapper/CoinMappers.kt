@@ -80,9 +80,9 @@ interface CoinMappers {
             simpleDateFormat.timeZone = TimeZone.getDefault()
             return simpleDateFormat.format(date)
         }
-    }
 
-    companion object {
-        const val BASE_IMAGE_URL: String = "https://cryptocompare.com"
+        companion object {
+            const val BASE_IMAGE_URL: String = "https://cryptocompare.com"
+        }
     }
 }

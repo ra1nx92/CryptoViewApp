@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.cryptoviewapp.R
 import com.example.cryptoviewapp.databinding.FragmentDetalInfoCoinBinding
 import com.example.cryptoviewapp.presentation.viewmodels.CoinInfoViewModel
+import com.github.mikephil.charting.data.LineData
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
