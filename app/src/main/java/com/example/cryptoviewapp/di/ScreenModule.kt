@@ -5,5 +5,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val screenModule = module {
-        viewModel<CoinInfoViewModel> { CoinInfoViewModel(get(),get(),get()) }
+    viewModel<CoinInfoViewModel> {
+        CoinInfoViewModel(
+            getCoinInfoListUseCase = get(),
+            getCoinInfoUseCase = get(),
+            getLoadDataUseCase = get()
+        )
+    }
 }

@@ -11,4 +11,6 @@
     <string name="last_updated_label">Обновлено:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="list_crypto">Список популярных криптовалют</string>
+    <string name="detail_information">Детальная информация</string>
 </resources>
