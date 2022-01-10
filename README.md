@@ -13,7 +13,7 @@ ___
  цена в $, а также время последнего обновления курса. По клику на элемент списка открывается детальная информация о выбранной криптовалюте
 
 
-![list crypto](https://psv4.userapi.com/c520036/u38326722/docs/d34/0eff69beb663/video1987749073_2.gif?extra=Y1OrE06eQlF32EaQaWLlDvxtC73D1vSfQdXP44ypb0dI_VxvO7dm4ve0SPRtXo8JqEmPp56_SyO2M2wxJq7nwhAWEwIxzTWoGbZcGsInuM56ivbUBP4SZ7OIqM7sB10_6ZrMGzVkic_T1BcyDqo)
+![list crypto](https://psv4.userapi.com/c520036/u38326722/docs/d34/c23826e9e5d0/video1987749073_2.gif?extra=qfSoPaPxlater6LbgsTpQTZcsagc6pAoaV79ebrUmCzZl_bk82e411hMGyKU5BTPWrYTE1GPtE5Aa27gfqlaIjscjV1VKYwHa5DszdYdp3qsjyHB-3jEwevpgxxyqOB69qQu7KNACPTfwXpJHw7NYkE)
 
 
 - 3: Экран с детальной информацией по выбраной криптовалюте:
