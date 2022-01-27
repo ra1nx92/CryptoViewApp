@@ -4,14 +4,16 @@ import androidx.lifecycle.ViewModel
 import com.example.cryptoviewapp.domain.GetCoinInfoListUseCase
 import com.example.cryptoviewapp.domain.GetCoinInfoUseCase
 import com.example.cryptoviewapp.domain.GetLoadDataUseCase
+import javax.inject.Inject
 
-class CoinInfoViewModel(
-    getCoinInfoListUseCase: GetCoinInfoListUseCase,
+class CoinInfoViewModel @Inject constructor(
+    private val getCoinInfoListUseCase: GetCoinInfoListUseCase,
     private val getCoinInfoUseCase: GetCoinInfoUseCase,
-    getLoadDataUseCase: GetLoadDataUseCase
+    private val getLoadDataUseCase: GetLoadDataUseCase
 ) : ViewModel() {
 
     val coinInfoList = getCoinInfoListUseCase()
+
     init {
         getLoadDataUseCase()
     }
