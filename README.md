@@ -1,6 +1,6 @@
 # Crypto View App
 #### При разработке приложения использовались следующие технологии :
-***Kotlin \ Clean Architecture \ MVVM \ Recycler View \ Koin \ Coroutines \ Retrofit 2 \ Room \ Picasso \ Work Manager \ Navigation Component***
+***Kotlin \ Clean Architecture \ MVVM \ Recycler View \ Dagger2 \ Coroutines \ Retrofit 2 \ Room \ Picasso \ Work Manager \ Navigation Component***
 
 ___
 #### Приложение служит для просмотра актуального курса самых популярных криптовалют. Обновление курса происходит автоматически, каждые 15 секунд
