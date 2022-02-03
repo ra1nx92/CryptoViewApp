@@ -2,12 +2,17 @@ package com.example.cryptoviewapp.di
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.example.cryptoviewapp.data.workers.RefreshDataWorkerFactory
+import com.example.cryptoviewapp.presentation.fragments.CoinInfoFragment
+import com.example.cryptoviewapp.presentation.fragments.DetalInfoCoinFragment
 import dagger.BindsInstance
 import dagger.Component
-
-@Component(modules = [DataModule::class, DomainModule::class])
+@ApplicatoinScope
+@Component(modules = [DataModule::class, DomainModule::class, ViewModelModule::class])
 interface CoinComponent {
-    fun injectViewModel(vm:ViewModel)
+    fun inject(fragment: CoinInfoFragment)
+    fun inject(fragment: DetalInfoCoinFragment)
+    fun inject(application: CoinApplication)
 
     @Component.Factory
     interface Factory {
