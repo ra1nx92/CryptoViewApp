@@ -1,6 +1,6 @@
 package com.example.cryptoviewapp.data.repository
 
-import android.content.Context
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
@@ -10,9 +10,10 @@ import com.example.cryptoviewapp.data.mapper.CoinMappers
 import com.example.cryptoviewapp.data.workers.RefreshDataWorker
 import com.example.cryptoviewapp.domain.CoinInfo
 import com.example.cryptoviewapp.domain.CoinRepository
+import javax.inject.Inject
 
-class CoinRepositoryImpl(
-    private val context: Context,
+class CoinRepositoryImpl @Inject constructor(
+    private val context: Application,
     private val mapper:CoinMappers,
     private val coinInfoDao:CoinInfoDao
 ):CoinRepository {

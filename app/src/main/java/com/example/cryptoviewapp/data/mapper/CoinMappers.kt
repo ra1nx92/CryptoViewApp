@@ -10,6 +10,7 @@ import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 interface CoinMappers {
     fun mapDtoToDbModel(dto: CoinInfoDto): CoinInfoDbModel
@@ -18,7 +19,7 @@ interface CoinMappers {
     fun mapDbModelToEntity(dbModel: CoinInfoDbModel): CoinInfo
     fun convertTime(time: Long?): String
 
-    class Base : CoinMappers {
+    class Base @Inject constructor() : CoinMappers {
         override fun mapDtoToDbModel(dto: CoinInfoDto): CoinInfoDbModel {
             return CoinInfoDbModel(
                 fromsymbol = dto.fromsymbol,

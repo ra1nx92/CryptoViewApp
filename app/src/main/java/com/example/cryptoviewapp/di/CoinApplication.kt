@@ -1,26 +1,24 @@
 package com.example.cryptoviewapp.di
 
 import android.app.Application
-import androidx.work.Configuration
-import com.example.cryptoviewapp.data.workers.RefreshDataWorker
-import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.workmanager.koin.workManagerFactory
-import org.koin.core.component.KoinComponent
-import org.koin.core.context.startKoin
+import com.example.cryptoviewapp.data.workers.RefreshDataWorkerFactory
+import javax.inject.Inject
 
-
-class CoinApplication : Application(), Configuration.Provider {
-
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            modules(applicationModule, screenModule)
-            androidContext(this@CoinApplication)
-        }
+class CoinApplication : Application(),androidx.work.Configuration.Provider {
+    @Inject
+    lateinit var dataWorkerFactory: RefreshDataWorkerFactory
+    val component by lazy {
+        DaggerCoinComponent.factory().create(this)
     }
 
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
+    override fun onCreate() {
+        component.inject(this)
+        super.onCreate()
+    }
+
+    override fun getWorkManagerConfiguration(): androidx.work.Configuration {
+        return androidx.work.Configuration.Builder()
+            .setWorkerFactory(dataWorkerFactory)
             .build()
     }
 }

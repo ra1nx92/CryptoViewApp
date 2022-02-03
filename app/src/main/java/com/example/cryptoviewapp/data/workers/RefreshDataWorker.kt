@@ -9,19 +9,16 @@ import com.example.cryptoviewapp.data.database.CoinInfoDao
 import com.example.cryptoviewapp.data.mapper.CoinMappers
 import com.example.cryptoviewapp.data.network.ApiService
 import kotlinx.coroutines.delay
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 class RefreshDataWorker(
+    private val apiService: ApiService,
+    private val coinInfoDao: CoinInfoDao,
+    private val mapper: CoinMappers,
     context: Context,
     workerParameters: WorkerParameters,
     )
 //чтобы работать с корутинами, наследуемся от CoroutineWorker вместо обычного Worker
-    : CoroutineWorker(context, workerParameters),KoinComponent {
-
-    private val apiService:ApiService by inject()
-    private val coinInfoDao:CoinInfoDao by inject()
-    private val mapper:CoinMappers by inject()
+    : CoroutineWorker(context, workerParameters){
 
     override suspend fun doWork(): Result {
         while (true) {
